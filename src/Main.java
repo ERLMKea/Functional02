@@ -14,7 +14,7 @@ public class Main {
     public static void infiniteLoop() {
         Supplier<Double> ran = () -> Math.random();
         Stream<Double> dblrandom = Stream.generate(ran);
-        dblrandom.forEach(s -> System.out.println(s));
+        dblrandom.forEach(s -> System.out.println(s)); //forEach lukker stream når færdig. Her bliver den bare aldrig færdig.
     }
 
     public static void generate12EqualNumbers() {
@@ -46,7 +46,7 @@ public class Main {
         Function<Double, Long> dblround = d -> Math.round(d*100); //Function er igen et functional interface. Hvis function I modsætning til Supplier, returnerer en type
         Predicate<Long> longEqual = l -> l % 2 == 0; //Predicate er et functional interface. Som returnerer en Boolean. Bruges tit I filter til at fjerne alle elementer der returnere false.
 
-        return Stream.generate(ran) //Efter ovenstående forEach er streamen brugt. Så vi er nødt til at lave en ny
+        return Stream.generate(ran)
                 .map(dblround)
                 .filter(longEqual)
                 .limit(12)
